@@ -15,7 +15,8 @@ class ShellConsolePrinter implements NativeConsole.ConsolePrinter {
     private static final long serialVersionUID = 5869832740127501857L;
 
     @Override
-    public void print(Context cx, Scriptable scope, NativeConsole.Level level, Object[] args) {
+    public void print(Context cx, Scriptable scope, NativeConsole.Level level, ScriptStackElement[] stack,
+        Object[] args) {
         if (args.length == 0) {
             return;
         }
@@ -24,6 +25,12 @@ class ShellConsolePrinter implements NativeConsole.ConsolePrinter {
         ShellConsole console = Main.getGlobal().getConsole(Charset.defaultCharset());
         try {
             console.println(level + " " + msg);
+
+            if (stack != null) {
+                for (ScriptStackElement element : stack) {
+                    shellConsole.println(element.toString());
+                }
+            }
         } catch (IOException e) {
             throw Context.reportRuntimeError(e.getMessage());
         }
