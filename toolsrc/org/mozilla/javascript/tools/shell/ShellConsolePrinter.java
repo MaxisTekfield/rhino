@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.nio.charset.Charset;
 import org.mozilla.javascript.Context;
 import org.mozilla.javascript.NativeConsole;
+import org.mozilla.javascript.ScriptStackElement;
 import org.mozilla.javascript.Scriptable;
 
 /** Provide a printer use in console API */
