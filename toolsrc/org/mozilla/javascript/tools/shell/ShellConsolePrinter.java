@@ -29,7 +29,7 @@ class ShellConsolePrinter implements NativeConsole.ConsolePrinter {
 
             if (stack != null) {
                 for (ScriptStackElement element : stack) {
-                    shellConsole.println(element.toString());
+                    console.println(element.toString());
                 }
             }
         } catch (IOException e) {
