@@ -259,11 +259,11 @@ public class NativeConsole extends IdScriptableObject {
     }
 
     private static String formatFloat(Object val) {
-        if (val instanceof BigInteger || val instanceof Symbol) {
+        if (val instanceof BigInteger || ScriptRuntime.isSymbol(val)) {
             return ScriptRuntime.NaNobj.toString();
         }
 
-        return String.valueOf(ScriptRuntime.toNumber(val));
+        return ScriptRuntime.numberToString(ScriptRuntime.toNumber(val), 10);
     }
 
     private static String formatInt(Object val) {
@@ -271,7 +271,7 @@ public class NativeConsole extends IdScriptableObject {
             return ScriptRuntime.bigIntToString((BigInteger) val, 10) + "n";
         }
 
-        if (val instanceof Symbol) {
+        if (ScriptRuntime.isSymbol(val)) {
             return ScriptRuntime.NaNobj.toString();
         }
 
